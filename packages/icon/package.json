@@ -1,0 +1,29 @@
+{
+  "name": "@picasso-ui/icon",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "keywords": [
+    "icon"
+  ],
+  "author": "",
+  "homepage": "https://github.com/lyxdream/picasso-ui#readme",
+  "license": "ISC",
+  "main": "src/icon.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyxdream/picasso-ui.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/lyxdream/picasso-ui/issues"
+  }
+}
