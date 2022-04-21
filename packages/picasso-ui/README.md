@@ -1,11 +1,11 @@
-# `p-ui`
+# `picasso-ui`
 
 > TODO: description
 
 ## Usage
 
 ```
-const pUi = require('p-ui');
+const picassoUi = require('picasso-ui');
 
 // TODO: DEMONSTRATE API
 ```

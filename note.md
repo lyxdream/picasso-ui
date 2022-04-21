@@ -114,6 +114,32 @@ declare module "*.vue" {
 yarn install
 ```
 
+
+
+//组件库看效果=>文档=>md=>webpack
+
+```
+webpack   5
+webpack-cli  解析命令行功工具
+ webpack-dev-server   启服务
+vue-loader@next   解析vue模版
+@vue/compiler-sfc  编译单文件组件
+
+
+babel-loader
+ @babel/core  loader默认调用核心包，
+ @babel/preset-env  高级语法转换成低级语法
+ @babel/preset-typescript   babel转换ts,不用ts自带的编译功能
+ babel-plugin-module-resolver
+url-loader  解析文件资源，比如icon,编译成base64
+file-loader  文件很大，通过这个loader生成真实文件
+html-webpack-plugin 
+css-loader 
+sass-loader 
+style-loader
+sass 
+```
+
 测试数据：
 
 ```

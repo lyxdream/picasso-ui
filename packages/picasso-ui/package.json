@@ -1,11 +1,11 @@
 {
-  "name": "p-ui",
+  "name": "picasso-ui",
   "version": "0.0.0",
   "description": "> TODO: description",
-  "author": "yinxia <liyinxia@weimiao.cn>",
+  "author": "lyxdream <m17801129726@163.com>",
   "homepage": "https://github.com/lyxdream/picasso-ui#readme",
   "license": "ISC",
-  "main": "lib/p-ui.js",
+  "main": "index.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -13,9 +13,6 @@
   "files": [
     "lib"
   ],
-  "publishConfig": {
-    "registry": "https://registry.yarnpkg.com/"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lyxdream/picasso-ui.git"
