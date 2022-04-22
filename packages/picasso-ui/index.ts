@@ -9,8 +9,7 @@ const install = (app: App): void => {
     app.component(component.name, component);
   });
 };
-
-//使用组件的时候可以使用 createApp().use(xxx)
+// 在使用组件库的时候可以使用 createApp().use(XXX)
 export default {
-  install, // 导出install方法
+  install,
 };

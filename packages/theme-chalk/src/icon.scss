@@ -1,0 +1,28 @@
+@import "./common/var.scss";
+@font-face {
+  font-family: "p-ui-icons"; /* Project id 3351333 */
+  src: url("./fonts/iconfont.woff") format("woff"),
+    url("./fonts/iconfont.ttf") format("truetype");
+}
+
+[class^="#{$namespace}-icon-"] {
+  font-family: "p-ui-icons" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+// .p-ui-icons {
+// }
+
+.p-icon-loading:before {
+  content: "\e756";
+}
+
+.p-icon-close:before {
+  content: "\e661";
+}
+
+.p-icon-guanbi1:before {
+  content: "\e612";
+}
