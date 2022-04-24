@@ -13,6 +13,10 @@ module.exports = {
     // 解析模块 对应的扩展名有哪些
     extensions: [".ts", ".tsx", ".js", ".vue", ".json"],
   },
+  devServer: {
+    compress: true,
+    port: 9000,
+  },
   module: {
     rules: [
       {
