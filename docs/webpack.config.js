@@ -11,7 +11,7 @@ module.exports = {
   },
   resolve: {
     // 解析模块 对应的扩展名有哪些
-    extensions: [".ts", ".tsx", ".js", ".vue"],
+    extensions: [".ts", ".tsx", ".js", ".vue", ".json"],
   },
   module: {
     rules: [

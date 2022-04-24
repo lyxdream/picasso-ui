@@ -222,7 +222,7 @@ sass
 
 > babel.config.js
 
-```
+```js
 module.exports = {
   presets: [
     //预设是反着执行的 插件的集合
@@ -237,7 +237,6 @@ module.exports = {
     },
   ],
 };
-
 ```
 
 > 使用 webpack 进行文档构建工作 docs/webpack.config.js
@@ -297,11 +296,11 @@ module.exports = {
 
 ```json
  "scripts": {
-    "docs-dev": "webpack serve --config ./docs/webpack.config.js"
+    "website-dev": "webpack serve --config ./docs/webpack.config.js"
   }
 ```
 
-> docs/main.ts 配置运行命令：后续可以采用 "docs-dev" 运行文档来预览组件效果
+> docs/main.ts 配置运行命令：后续可以采用 "website-dev" 运行文档来预览组件效果
 
 ```ts
 import { createApp } from "vue";
@@ -313,7 +312,131 @@ import PUI from "picasso-ui";
 createApp(App).use(PUI).mount("#app");
 ```
 
-## 四.组件库打包
+> 新建模块 packages/theme-chalk
+
+> theme-chalk/src
+
+```
+
+├─common
+│    var.scss # 提供scss变量
+├─fonts # 字体
+└─mixins
+     config.scss # 提供名字
+     mixins.scss # 提供mixin方法
+  index.scss  # 整合所有scss
+│ button.scss
+│ icon.scss
+```
+
+> 修改 packages/icon/src/icon.vue
+
+```vue
+<template>
+  <i :class="`p-icon-${name}`"></i>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
+  name: "PIcon",
+  props: {
+    name: {
+      type: String,
+      default: "",
+    },
+  },
+});
+</script>
+```
+
+> docs/App.vue
+
+```vue
+<template>
+  <p-button></p-button>
+  <p-icon name="loading"></p-icon>
+</template>
+```
+
+执行 npm run website-dev
+
+可以看到 loading 效果
+
+## 四.组件样式处理
+
+### 1.使用 gulp 打包 scss 文件
+
+> 安装 gulp, 打包样式
+
+```
+yarn add gulp gulp-autoprefixer gulp-cssmin gulp-dart-sass gulp-rename -D
+```
+
+docs/main.ts
+
+```ts
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import PUI from "picasso-ui";
+
+import "theme-chalk/src/index.scss";
+
+//创建应用，使用组件
+createApp(App).use(PUI).mount("#app");
+```
+
+> 最终使用打包后的 css 引入即可，这里为了方便调试，不需要每次进行重新打包
+
+```
+ "css-loader": "^6.7.1",  //图标出不来
+ 改为
+  "css-loader": "5.1.3",
+```
+
+> theme-chalk/gulpfile.js
+
+```js
+const { series, src, dest } = require("gulp");
+const sass = require("gulp-dart-sass");
+const autoprefixer = require("gulp-autoprefixer");
+const cssmin = require("gulp-cssmin");
+
+function compile() {
+  // 处理scss文件
+  return src("./src/*.scss")
+    .pipe(sass.sync())
+    .pipe(autoprefixer({}))
+    .pipe(cssmin())
+    .pipe(dest("./lib"));
+}
+function copyfont() {
+  // 拷贝字体样式
+  return src("./src/fonts/**").pipe(cssmin()).pipe(dest("./lib/fonts"));
+}
+
+exports.build = series(compile, copyfont);
+```
+
+package.json
+
+```json
+  "scripts": {
+    "build:theme": " gulp build --gulpfile packages/theme-chalk/gulpfile.js"
+  }
+```
+
+> docs/App.vue
+
+```vue
+<template>
+  <p-button></p-button>
+  <p-icon name="loading"></p-icon>
+</template>
+```
+
+## 五.组件库打包
 
 format：输出的文件可以还可以是 amd，umd，cjs，es，iife；
 
@@ -371,4 +494,232 @@ import React from 'react';
     color: #f00;
   }
 }
+```
+
+组件库的打包规范：
+
+1. 整个打包 umd
+2. es6 esmodule
+3. 组件的按需加载，需要把每个文件夹单独打包
+
+按需加载
+
+```
+babel-import-plugin
+```
+
+### 打包 Umd 格式组件库
+
+webpack 的 externals
+
+> 防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖(external dependencies)。
+
+```
+root：可以通过一个全局变量访问 library（例如，通过 script 标签）。
+commonjs：可以将 library 作为一个 CommonJS 模块访问。
+commonjs2：和上面的类似，但导出的是 module.exports.default.
+amd：类似于 commonjs，但使用 AMD 模块系统。
+
+```
+
+builds/webpack.config.js
+
+```js
+const path = require("path");
+const { VueLoaderPlugin } = require("vue-loader");
+module.exports = {
+  mode: "production",
+  entry: path.resolve(__dirname, "../packages/picasso-ui/index.ts"),
+  externals: {
+    vue: {
+      root: "Vue",
+      commonjs: "vue", //可以将 library 作为一个 CommonJS 模块访问。
+      commonjs2: "vue", //和上面的类似，但导出的是 module.exports.default
+      // amd: "vue", //类似于 commonjs，但使用 AMD 模块系统。
+    },
+  }, // 排除vue打包
+  output: {
+    path: path.resolve(__dirname, "../lib"),
+    filename: "index.js",
+    libraryTarget: "umd", // 可以支持commonjs 和 amd  不支持es6 可以在浏览器直接使用
+    library: "picasso-ui",
+  },
+  resolve: {
+    // 解析模块 对应的扩展名有哪些
+    extensions: [".ts", ".tsx", ".js", ".vue", ".json"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(ts|js)x?$/,
+        exclude: /node_modules/,
+        use: "babel-loader",
+      },
+      {
+        test: /\.vue$/,
+        use: "vue-loader",
+      },
+    ],
+  },
+  plugins: [new VueLoaderPlugin()],
+};
+```
+
+> package.json
+
+```json
+ "build": "webpack --config ./builds/webpack.config.js"
+```
+
+> 使用 docs/main.ts
+
+```ts
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import PUI from "../lib/index.js";
+import "theme-chalk/src/index.scss";
+
+//创建应用，使用组件
+createApp(App).use(PUI).mount("#app");
+```
+
+```
+npm run build
+npm run website-dev
+```
+
+### 打包 esModule 格式组件库
+
+> 使用 rollup 进行打包，安装所需依赖
+
+```
+yarn add rollup rollup-plugin-typescript2 @rollup/plugin-node-resolve rollup-plugin-vue -D
+```
+
+> 全量打包 builds/rollup.config.bundle.js
+
+```js
+import typescript from "rollup-plugin-typescript2";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import path from "path";
+import vue from "rollup-plugin-vue";
+
+export default {
+  input: path.resolve(__dirname, `../packages/picasso-ui/index.ts`),
+  output: {
+    format: "es",
+    file: `lib/index.esm.js`,
+  },
+  plugins: [
+    nodeResolve(),
+    vue({
+      target: "browser",
+    }),
+    typescript({
+      //默认用tsconfig.json 生成声明文件
+      exclude: ["node_modules", "docs"],
+    }),
+  ],
+  external(id) {
+    // 排除vue本身
+    return /^vue/.test(id);
+  },
+};
+```
+
+> package.json
+
+```json
+   "build:esm-bundle": "rollup -c ./builds/rollup.config.bundle.js",
+```
+
+> 使用 docs/main.ts
+
+```ts
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import PUI from "../lib/index.esm.js";
+import "theme-chalk/src/index.scss";
+
+//创建应用，使用组件
+createApp(App).use(PUI).mount("#app");
+```
+
+```
+npm run build:esm-bundles
+npm run website-dev
+```
+
+### 按组件打包
+
+> builds/rollup.config.js
+
+```js
+import typescript from "rollup-plugin-typescript2";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import path from "path";
+import { getPackagesSync } from "@lerna/project";
+import vue from "rollup-plugin-vue";
+
+// 获取package.json 找到名字 以@p-ui 开头的
+const inputs = getPackagesSync()
+  .map((pck) => pck.name)
+  .filter((name) => name.includes("@picasso-ui"));
+export default inputs.map((name) => {
+  const pckName = name.split("@picasso-ui")[1]; // button icon
+  return {
+    input: path.resolve(__dirname, `../packages/${pckName}/index.ts`),
+    output: {
+      format: "es",
+      file: `lib/${pckName}/index.js`,
+    },
+    plugins: [
+      nodeResolve(),
+      vue({
+        target: "browser",
+      }),
+      typescript({
+        tsconfigOverride: {
+          compilerOptions: {
+            // 打包单个组件的时候不生成ts声明文件
+            declaration: false,
+          },
+          exclude: ["node_modules"],
+        },
+      }),
+    ],
+    external(id) {
+      // 对vue本身 和 自己写的包 都排除掉不打包
+      return /^vue/.test(id) || /^@picasso-ui/.test(id);
+    },
+  };
+});
+```
+
+> package.json
+
+```json
+  "build:esm": "rollup -c ./builds/rollup.config.js"
+```
+
+> 使用 docs/main.ts
+
+```ts
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import Icon from "../lib/icon/index";
+import Button from "../lib/button/index";
+
+import "theme-chalk/src/index.scss";
+
+//创建应用，使用组件
+createApp(App).use(Icon).use(Button).mount("#app");
+```
+
+```
+npm run build:esm
+npm run website-dev
 ```
