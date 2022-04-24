@@ -12,8 +12,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-// .p-ui-icons {
-// }
 
 .p-icon-loading:before {
   content: "\e756";
@@ -25,4 +23,15 @@
 
 .p-icon-guanbi1:before {
   content: "\e612";
+}
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+.#{$namespace}-icon-loading {
+  animation: rotating 1.5s linear infinite;
 }
