@@ -1,9 +1,13 @@
 <template>
-  <button>按钮</button>
+  <button :class="classs">
+    <i v-if="loading" class="p-icon-loading"></i>
+    <i v-if="icon && !loading" :class="icon"></i>
+    <span v-if="$slots.default"><slot></slot></span>
+  </button>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { computed, defineComponent, PropType } from "vue";
 type IButtonType =
   | "primary"
   | "success"
@@ -11,6 +15,7 @@ type IButtonType =
   | "danger"
   | "info"
   | "default";
+type ComponentSize = "large" | "medium" | "small" | "mini";
 export default defineComponent({
   props: {
     type: {
@@ -27,6 +32,9 @@ export default defineComponent({
         ].includes(val);
       },
     },
+    size: {
+      type: String as PropType<ComponentSize>,
+    },
     icon: {
       type: String,
       default: "",
@@ -37,7 +45,18 @@ export default defineComponent({
   },
   name: "PButton",
   setup(props, ctx) {
-    props.type;
+    const classs = computed(() => [
+      "p-button",
+      "p-button--" + props.type,
+      {
+        "is-disabled": props.disabled,
+        "is-loading": props.loading,
+        "is-round": props.round,
+      },
+    ]);
+    return {
+      classs,
+    };
   },
 });
 </script>
