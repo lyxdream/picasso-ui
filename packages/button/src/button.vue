@@ -1,5 +1,5 @@
 <template>
-  <button :class="classs">
+  <button :class="classs" @click="handleClick">
     <i v-if="loading" class="p-icon-loading"></i>
     <i v-if="icon && !loading" :class="icon"></i>
     <span v-if="$slots.default"><slot></slot></span>
@@ -43,6 +43,7 @@ export default defineComponent({
     loading: Boolean,
     round: Boolean,
   },
+  emits: ["click"],
   name: "PButton",
   setup(props, ctx) {
     const classs = computed(() => [
@@ -54,8 +55,13 @@ export default defineComponent({
         "is-round": props.round,
       },
     ]);
+    const handleClick = (e) => {
+      console.log("innner");
+      ctx.emit("click", e);
+    };
     return {
       classs,
+      handleClick,
     };
   },
 });
