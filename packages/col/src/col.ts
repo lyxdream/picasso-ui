@@ -22,7 +22,7 @@ export default defineComponent({
       const ret = [];
       const pos = ["span", "offset"] as const;
       pos.forEach((item) => {
-        const size = pos[item];
+        const size = props[item];
         if (typeof size == "number" && size > 0) {
           ret.push(`p-col-${item}-${props[item]}`);
         }

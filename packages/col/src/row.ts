@@ -1,4 +1,4 @@
-import { defineComponent, h } from "vue";
+import { defineComponent, h, computed } from "vue";
 export default defineComponent({
   name: "PRow",
   props: {
@@ -20,6 +20,16 @@ export default defineComponent({
     },
   },
   setup(props, { slots }) {
-    return () => h(props.tag, {}, slots.default?.());
+    const classs = computed(() => {
+      return ["p-row"];
+    });
+    return () =>
+      h(
+        props.tag,
+        {
+          class: classs.value,
+        },
+        slots.default?.()
+      );
   },
 });

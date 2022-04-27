@@ -1,0 +1,8 @@
+@import "./common/var.scss";
+@import "./mixins/mixins.scss";
+
+@include b(row) {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+}

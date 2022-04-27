@@ -2,6 +2,15 @@
 @import "./mixins/mixins.scss";
 
 @include b(col) {
-  
+  box-sizing: border-box;
+  @for $i from 1 through 24 {
+    &.#{$namespace}-col-span-#{$i} {
+      max-width: calc(1 / 24 * $i * 100) * 1%;
+      flex: calc(1 / 24 * $i * 100) * 1%;
+    }
+    &.#{$namespace}-col-offset-#{$i} {
+      margin-left: calc(1 / 24 * $i * 100) * 1%;
+    }
+  }
 }
 //生成24种写法
