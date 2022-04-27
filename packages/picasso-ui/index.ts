@@ -1,9 +1,11 @@
 import Button from "@picasso-ui/button";
 import Icon from "@picasso-ui/icon";
-import ButtonGroup from '@picasso-ui/button-group'
+import ButtonGroup from "@picasso-ui/button-group";
+import Row from "@picasso-ui/row";
+import Col from "@picasso-ui/col";
 import { App } from "vue";
 
-const components = [Button, Icon, ButtonGroup];
+const components = [Button, Icon, ButtonGroup, Row, Col];
 
 const install = (app: App): void => {
   components.forEach((component) => {

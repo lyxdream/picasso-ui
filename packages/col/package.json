@@ -1,0 +1,29 @@
+{
+  "name": "@picasso-ui/col",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "yinxia <>",
+  "homepage": "https://github.com/lyxdream/picasso-ui#readme",
+  "license": "ISC",
+  "main": "lib/col.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "http://registry-cnpm.weimiaocaishang.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyxdream/picasso-ui.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/lyxdream/picasso-ui/issues"
+  }
+}
