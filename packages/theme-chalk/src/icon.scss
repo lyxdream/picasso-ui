@@ -13,18 +13,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.p-icon-arrow-right:before {
+  content: "\e600";
+}
+
+.p-icon-arrow-left:before {
+  content: "\e623";
+}
+
 .p-icon-loading:before {
   content: "\e756";
 }
 
 .p-icon-close:before {
-  content: "\e661";
-}
-
-.p-icon-arrow-left:before {
-  content: "\e661";
-}
-.p-icon-arrow-right:before {
   content: "\e661";
 }
 

@@ -2,6 +2,8 @@
 @import "./mixins/mixins.scss";
 
 @include b(button-group) {
+  display: inline-block;
+  vertical-align: middle;
   & > .#{$namespace}-button {
     &:first-child {
       border-top-right-radius: 0;

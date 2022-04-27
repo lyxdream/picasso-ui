@@ -3,6 +3,8 @@
 
 @include b(button) {
   display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
   min-height: 40px;
   outline: none;
   border: #f1f1f1;
