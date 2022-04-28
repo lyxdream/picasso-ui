@@ -1,9 +1,14 @@
 @import "./common/var.scss";
 @import "./mixins/mixins.scss";
 
+.#{$namespace}-col-span-0 {
+  display: none;
+}
+
+//生成24种写法
 @include b(col) {
   box-sizing: border-box;
-  @for $i from 1 through 24 {
+  @for $i from 0 through 24 {
     &.#{$namespace}-col-span-#{$i} {
       max-width: calc(1 / 24 * $i * 100) * 1%;
       flex: calc(1 / 24 * $i * 100) * 1%;
@@ -13,4 +18,76 @@
     }
   }
 }
-//生成24种写法
+
+@include res(xs) {
+  .#{$namespace}-col-xs-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .#{$namespace}-col-xs-#{$i} {
+      max-width: calc(1 / 24 * $i * 100) * 1%;
+      flex: 0 0 calc(1 / 24 * $i * 100) * 1%;
+    }
+    .#{$namespace}-col-xs-offset-#{$i} {
+      margin-left: calc(1 / 24 * $i * 100) * 1%;
+    }
+  }
+}
+@include res(sm) {
+  .#{$namespace}-col-xs-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .#{$namespace}-col-sm-#{$i} {
+      max-width: calc(1 / 24 * $i * 100) * 1%;
+      flex: 0 0 calc(1 / 24 * $i * 100) * 1%;
+    }
+    .#{$namespace}-col-sm-offset-#{$i} {
+      margin-left: calc(1 / 24 * $i * 100) * 1%;
+    }
+  }
+}
+@include res(md) {
+  .#{$namespace}-col-xs-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .#{$namespace}-col-md-#{$i} {
+      max-width: calc(1 / 24 * $i * 100) * 1%;
+      flex: 0 0 calc(1 / 24 * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-md-offset-#{$i} {
+      margin-left: calc(1 / 24 * $i * 100) * 1%;
+    }
+  }
+}
+
+@include res(lg) {
+  .#{$namespace}-col-xs-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .#{$namespace}-col-lg-#{$i} {
+      max-width: calc(1 / 24 * $i * 100) * 1%;
+      flex: 0 0 calc(1 / 24 * $i * 100) * 1%;
+    }
+    .#{$namespace}-col-lg-offset-#{$i} {
+      margin-left: calc(1 / 24 * $i * 100) * 1%;
+    }
+  }
+}
+@include res(xl) {
+  .#{$namespace}-col-xs-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .#{$namespace}-col-xl-#{$i} {
+      max-width: calc(1 / 24 * $i * 100) * 1%;
+      flex: 0 0 calc(1 / 24 * $i * 100) * 1%;
+    }
+    .#{$namespace}-col-xl-offset-#{$i} {
+      margin-left: calc(1 / 24 * $i * 100) * 1%;
+    }
+  }
+}
