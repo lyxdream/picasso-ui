@@ -2,7 +2,7 @@
   "name": "@picasso-ui/row",
   "version": "0.0.0",
   "description": "> TODO: description",
-  "author": "yinxia <>",
+  "author": "lyxdream",
   "homepage": "https://github.com/lyxdream/picasso-ui#readme",
   "license": "ISC",
   "main": "lib/row.js",

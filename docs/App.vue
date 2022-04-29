@@ -1,65 +1,17 @@
 <template>
-  <Button />
+  <Button v-if="false" />
   <hr />
-  <p-row tag="div">
-    <p-col tag="p" :span="6" :offset="2">
-      <div style="background: red">1111</div>
-    </p-col>
-    <p-col tag="p" :span="6">
-      <div style="background: yellow">222</div>
-    </p-col>
-    <p-col tag="p" :span="6">22233</p-col>
-    <p-col tag="p" :span="6">eee</p-col>
-  </p-row>
-
-  <div style="border: 1px solid #ddd">
-    <p-row tag="div" :gutter="20">
-      <p-col :span="8">
-        <div class="grid-content bg-purple"></div>
-      </p-col>
-      <p-col :span="8">
-        <div class="grid-content bg-purple-light"></div>
-      </p-col>
-      <p-col :span="8">
-        <div class="grid-content bg-purple"></div>
-      </p-col>
-    </p-row>
-  </div>
-
-  <div style="border: 1px solid #ddd">
-    <p-row type="flex" justify="end">
-      <p-col tag="p" :span="2">
-        <div style="background: red">1111</div>
-      </p-col>
-      <p-col tag="p" :span="2"
-        ><div style="background: yellow">1111</div>
-      </p-col>
-      <p-col tag="p" :span="2">22233</p-col>
-    </p-row>
-  </div>
-  <div style="border: 1px solid #ddd">
-    <p-row>
-      <p-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
-        <div class="grid-content bg-purple"></div>
-      </p-col>
-      <p-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"
-        ><div class="grid-content bg-purple-light"></div
-      ></p-col>
-      <p-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"
-        ><div class="grid-content bg-purple"></div
-      ></p-col>
-      <p-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"
-        ><div class="grid-content bg-purple-light"></div
-      ></p-col>
-    </p-row>
-  </div>
+  <Row v-if="false" />
+  <p-checkbox></p-checkbox>
+  <p-checkbox-group></p-checkbox-group>
 </template>
 <script lang="ts">
 import Button from "./components/Button.vue";
+import Row from "./components/Row.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  components: { Button },
+  components: { Button, Row },
   setup(props, ctx) {},
 });
 </script>

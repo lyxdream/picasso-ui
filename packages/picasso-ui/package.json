@@ -2,7 +2,7 @@
   "name": "picasso-ui",
   "version": "0.0.0",
   "description": "> TODO: description",
-  "author": "lyxdream <m17801129726@163.com>",
+  "author": "lyxdream",
   "homepage": "https://github.com/lyxdream/picasso-ui#readme",
   "license": "ISC",
   "main": "src/picasso-ui.js",

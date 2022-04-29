@@ -5,7 +5,7 @@
   "keywords": [
     "button"
   ],
-  "author": "",
+  "author": "lyxdream",
   "homepage": "https://github.com/lyxdream/picasso-ui#readme",
   "license": "ISC",
   "main": "src/button.js",

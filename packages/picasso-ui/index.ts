@@ -3,9 +3,19 @@ import Icon from "@picasso-ui/icon";
 import ButtonGroup from "@picasso-ui/button-group";
 import Row from "@picasso-ui/row";
 import Col from "@picasso-ui/col";
+import Checkbox from "@picasso-ui/checkbox";
+import CheckboxGroup from "@picasso-ui/checkbox-group";
 import { App } from "vue";
 
-const components = [Button, Icon, ButtonGroup, Row, Col];
+const components = [
+  Button,
+  Icon,
+  ButtonGroup,
+  Row,
+  Col,
+  Checkbox,
+  CheckboxGroup,
+];
 
 const install = (app: App): void => {
   components.forEach((component) => {
