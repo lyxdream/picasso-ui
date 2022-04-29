@@ -25,6 +25,7 @@ export default defineComponent({
       return [
         "p-row",
         props.justify !== "start" ? `is-justify-${props.justify}` : "",
+        { "p-row--flex": props.type === "flex" },
       ];
     });
     const styles = computed(() => {

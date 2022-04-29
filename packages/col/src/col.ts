@@ -50,7 +50,7 @@ export default defineComponent({
         }
       });
       sizes.forEach((size) => {
-        if (typeof props[size] === "number") {
+        if (typeof props[size] === "number" && props[size] > 0) {
           ret.push(`p-col-${size}-${props[size]}`);
         }
       });
