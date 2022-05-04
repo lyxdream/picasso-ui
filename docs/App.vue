@@ -2,24 +2,28 @@
   <Button v-if="false" />
   <hr />
   <Row v-if="false" />
-  <p-checkbox>checkbox</p-checkbox>
+  <!-- 组件内部 会去emit('update:modelValue',[]) checkVal = []-->
+  <!-- 如果用reative 会更新引用，只会更新一次 -->
+  <p-checkbox v-model="checkVal">checkbox</p-checkbox>
   <p-checkbox-group></p-checkbox-group>
 </template>
 <script lang="ts">
 import Button from "./components/Button.vue";
 import Row from "./components/Row.vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 // import { useCheckbox } from "./hook/useCheckbox";
 export const useCheckbox = () => {
-  // const checkVal = ref(true);
-  return {};
+  const checkVal = ref(true);
+  return {
+    checkVal
+  };
 };
 
 export default defineComponent({
   components: { Button, Row },
   setup(props, ctx) {
     return {
-      ...useCheckbox,
+      ...useCheckbox(),
     };
   },
 });

@@ -1,6 +1,6 @@
-
 <template>
   <div class="p-checkbox">
+    {{ modelValue }}
     <span class="p-checkbox__input">
       <input type="checkbox" />
     </span>
@@ -21,6 +21,7 @@ export default defineComponent({
     label: [String, Number, Boolean],
     modelValue: [String, Number, Boolean],
   },
+  emits:[],
   setup() {},
 });
 </script>
