@@ -1,8 +1,15 @@
 <template>
   <div class="p-checkbox">
-    {{ modelValue }}
     <span class="p-checkbox__input">
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        v-model="model"
+        :checked="isChecked"
+        @change="handleChange"
+        :name="name"
+        :disabled="disabled"
+        :indeterminate="indeterminate"
+      />
     </span>
     <span class="p-checkbox__label">
       <slot></slot>
@@ -11,6 +18,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useCheckbox } from "./useCheckbox";
 export default defineComponent({
   name: "PCheckbox",
   props: {
@@ -21,7 +29,9 @@ export default defineComponent({
     label: [String, Number, Boolean],
     modelValue: [String, Number, Boolean],
   },
-  emits:[],
-  setup() {},
+  emits: ["update:modelValue", "change"],
+  setup(props, { emit }) {
+    return useCheckbox(props);
+  },
 });
 </script>

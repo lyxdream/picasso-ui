@@ -723,3 +723,12 @@ createApp(App).use(Icon).use(Button).mount("#app");
 npm run build:esm
 npm run website-dev
 ```
+
+
+
+知识扩展：
+
+Vue Template Explorer
+
+vue2地址路径：https://template-explorer.vuejs.org/#
+vue3地址路径：https://vue-next-template-explorer.netlify.app/#
