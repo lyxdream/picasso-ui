@@ -724,11 +724,21 @@ npm run build:esm
 npm run website-dev
 ```
 
-
-
 知识扩展：
 
 Vue Template Explorer
 
-vue2地址路径：https://template-explorer.vuejs.org/#
-vue3地址路径：https://vue-next-template-explorer.netlify.app/#
+vue2 地址路径：https://template-explorer.vuejs.org/#
+vue3 地址路径：https://vue-next-template-explorer.netlify.app/#
+
+
+
+
+
+checkbox-group每次状态发生变化都得调用
+
+```ts
+if (isGroup) {
+  return checkboxGroup.changeEvent(val);
+}
+```

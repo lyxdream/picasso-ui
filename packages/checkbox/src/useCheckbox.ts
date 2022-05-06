@@ -12,26 +12,38 @@ const useCheckboxGroup = () => {
 
 const useModel = (props: ICheckboxProps) => {
   const { emit } = getCurrentInstance(); //只有checkbox的时候，用户会传递modelValue
-  const { isGroup } = useCheckboxGroup();
-  console.log(isGroup.value, "--isGroup");
+  const { isGroup, checkboxGroup } = useCheckboxGroup();
+  const store = computed(() =>
+    checkboxGroup ? checkboxGroup.modelValue?.value : props.modelValue
+  ); // 将父组件v-model数据获取到 传递给自己，type="checkbox" 可以绑定数组
   const model = computed({
     get() {
-      return props.modelValue;
+      return isGroup.value ? store.value : props.modelValue;
     },
     set(val) {
+      if (isGroup.value) {
+        return checkboxGroup.changeEvent(val);
+      }
       emit("update:modelValue", val);
     },
   });
   return model;
 };
+
 const useCheckboxStatus = (
   props: ICheckboxProps,
   model: WritableComputedRef<unknown>
 ) => {
   const isChecked = computed(() => {
-    const value = model.value; //当前是不是选中的
+    const value = model.value; //当前是不是选中的  [上海，北京]
     //todo...
-    return value;
+    // console.log(value, "---value");
+    if (Array.isArray(value)) {
+      //父组件group传过来的数组
+      return value.includes(props.label);
+    } else {
+      return value;
+    }
   });
   return isChecked;
 };
@@ -52,6 +64,7 @@ export const useCheckbox = (props: ICheckboxProps) => {
   const isChecked = useCheckboxStatus(props, model);
   //3.加一个change事件  可以触发绑定到自己身上的change
   const handleChange = useEvent();
+  // 4.每次状态发生变化都得调用
 
   return {
     model,
