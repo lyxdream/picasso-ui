@@ -5,6 +5,7 @@ import Row from "@picasso-ui/row";
 import Col from "@picasso-ui/col";
 import Checkbox from "@picasso-ui/checkbox";
 import CheckboxGroup from "@picasso-ui/checkbox-group";
+import Transfer from "@picasso-ui/transfer";
 import { App } from "vue";
 
 const components = [
@@ -15,6 +16,7 @@ const components = [
   Col,
   Checkbox,
   CheckboxGroup,
+  Transfer,
 ];
 
 const install = (app: App): void => {
