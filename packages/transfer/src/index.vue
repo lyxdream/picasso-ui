@@ -44,6 +44,11 @@ export default defineComponent({
     // console.log(props.data, props.props,props.modelValue);
     let { propsKey, sourceData, targetData } = useComputedData(props);
     console.log(propsKey, sourceData, targetData);
+    return {
+      propsKey,
+      sourceData,
+      targetData,
+    };
   },
 });
 </script>

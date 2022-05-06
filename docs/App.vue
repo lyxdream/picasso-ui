@@ -57,6 +57,7 @@ export const useTransfer = () => {
     transferProps: {
       key: "value",
       label: "desc",
+      disabled: "disabled",
     },
   };
 };
