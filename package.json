@@ -4,9 +4,6 @@
   "description": "vue3+ts组件库",
   "private": true,
   "license": "ISC",
-  "workspaces": [
-    "packages/*"
-  ],
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
@@ -46,5 +43,21 @@
     "build": "webpack --config ./builds/webpack.config.js",
     "build:esm-bundle": "rollup -c ./builds/rollup.config.bundle.js",
     "build:esm": "rollup -c ./builds/rollup.config.js"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyxdream/picasso-ui.git"
+  },
+  "keywords": [
+    "vue3",
+    "ts"
+  ],
+  "author": "lyxdream",
+  "bugs": {
+    "url": "https://github.com/lyxdream/picasso-ui/issues"
+  },
+  "homepage": "https://github.com/lyxdream/picasso-ui#readme",
+  "workspaces": [
+    "packages/*"
+  ]
 }

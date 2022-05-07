@@ -734,11 +734,12 @@ vue3 地址路径：https://vue-next-template-explorer.netlify.app/#
 
 
 
-
+```备注
 checkbox-group每次状态发生变化都得调用
 
 ```ts
 if (isGroup) {
   return checkboxGroup.changeEvent(val);
 }
+```
 ```

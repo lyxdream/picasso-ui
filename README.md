@@ -1,42 +1,37 @@
 # 从零搭建 Vue3.0 组件
 
-## 一.组件库初始化
-
-### 1.monorepo 项目初始化
+## 安装依赖
 
 ```
-$ yarn global add lerna
-$ lerna init
-或
-npm i lerna -g
-lerna init
-```
-
-测试数据：
+yarn install
 
 ```
-{
-  "name": "picasso-ui",
-  "version": "1.0.0",
-  "description": "vue3组件库",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lyxdream/picasso-ui.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lyxdream/picasso-ui/issues"
-  },
-  "homepage": "https://github.com/lyxdream/picasso-ui#readme",
-  "devDependencies": {
-    "lerna": "^4.0.0"
-  }
-}
+## 运行demo
 
+```
+npm run website-dev
+```
+## 打包css
+
+```
+npm run build:theme
+```
+
+## 打包 Umd 格式组件库
+
+```
+npm run build
+```
+
+
+## 打包 esModule 格式组件库
+
+```
+build:esm-bundle
+```
+
+## 按组件打包
+
+```
+npm run build:esm
 ```
