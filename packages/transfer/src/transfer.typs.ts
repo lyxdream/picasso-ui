@@ -14,7 +14,7 @@ export type Props = {
 
 export interface ITransferProps {
   data: DataItem[];
-  modelValue: Key[]; //放置有右边的索引
+  modelValue: Key[]; //放置右边的索引
   props: Props;
 }
 

@@ -37,6 +37,7 @@ export default defineComponent({
     },
     props: Object as PropType<Props>,
   },
+  emits: ["checked-change"],
   setup(props) {
     //应该有一个属于面板自己的状态
     const panelState = reactive({

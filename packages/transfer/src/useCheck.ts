@@ -1,10 +1,11 @@
-import { computed } from "vue";
+import { computed, getCurrentInstance, watch } from "vue";
 import { ITransferPanelProps, IPanelState } from "./transfer.typs";
 
 export const useCheck = (
   props: ITransferPanelProps,
   panelState: IPanelState
 ) => {
+  const { emit } = getCurrentInstance();
   const labelProp = computed(() => props.props.label);
   const keyProp = computed(() => props.props.key);
   const disabledProp = computed(() => props.props.disabled);
@@ -21,6 +22,24 @@ export const useCheck = (
       ? checkAbleData.value.map((item) => item[keyProp.value])
       : [];
   };
+  //watch的第一个参数尽量放函数,是基于effect实现，知识有对应的自己的调度方法scheduler
+  watch(
+    () => panelState.checked,
+    () => {
+      //看看有没有false，如果有false，则说明不是全选
+      const checkKeys = checkAbleData.value.map((item) => item[keyProp.value]); //获取所有的key
+      panelState.allChecked =
+        checkKeys.length > 0 &&
+        checkKeys.every((key) => panelState.checked.includes(key));
+      emit("checked-change", panelState.checked);
+    }
+  );
+  watch(
+    () => props.data,
+    () => {
+      panelState.checked = [];
+    }
+  );
   return {
     labelProp,
     keyProp,

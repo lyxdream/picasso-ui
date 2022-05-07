@@ -76,4 +76,7 @@ export default defineComponent({
   border-radius: 4px;
   min-height: 36px;
 }
+.p-col {
+  border-radius: 4px;
+}
 </style>

@@ -1,11 +1,10 @@
 <template>
-  <button :class="classs" @click="handleClick">
+  <button :class="classs" @click="handleClick" :disabled="disabled">
     <i v-if="loading" class="p-icon-loading"></i>
     <i v-if="icon && !loading" :class="icon"></i>
     <span v-if="$slots.default"><slot></slot></span>
   </button>
 </template>
-
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
 type IButtonType =

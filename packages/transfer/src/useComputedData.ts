@@ -16,6 +16,7 @@ export const useComputedData = (props: ITransferProps) => {
       (item) => !props.modelValue.includes(item[propsKey.value])
     );
   });
+  
   const targetData = computed(() => {
     return props.modelValue.reduce((memo, key) => {
       memo.push(data.value[key]);
