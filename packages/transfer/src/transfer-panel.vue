@@ -21,11 +21,11 @@
 </template>
 <script lang="ts">
 import { reactive, toRefs } from "vue";
-import { Props } from "./transfer.typs";
+import { Props } from "./transfer.types";
 import { defineComponent, PropType } from "vue";
 import PCheckbox from "@picasso-ui/checkbox";
 import PCheckboxGroup from "@picasso-ui/checkbox-group";
-import { useCheck } from "./useCheck.ts";
+import { useCheck } from "./useCheck";
 
 export default defineComponent({
   name: "PTransferPanel",

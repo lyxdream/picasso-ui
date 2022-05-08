@@ -35,7 +35,7 @@
 import { defineComponent, PropType, reactive, toRefs } from "vue";
 import PTransferPanel from "./transfer-panel.vue";
 import PButton from "@picasso-ui/button";
-import { DataItem, Key, Props } from "./transfer.typs";
+import { DataItem, Key, Props } from "./transfer.types";
 import { useComputedData } from "./useComputedData";
 export default defineComponent({
   name: "PTransfer",

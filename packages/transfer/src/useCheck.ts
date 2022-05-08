@@ -1,5 +1,5 @@
 import { computed, getCurrentInstance, watch } from "vue";
-import { ITransferPanelProps, IPanelState } from "./transfer.typs";
+import { ITransferPanelProps, IPanelState } from "./transfer.types";
 
 export const useCheck = (
   props: ITransferPanelProps,

@@ -1,4 +1,4 @@
-import { ITransferProps } from "./transfer.typs";
+import { ITransferProps } from "./transfer.types";
 import { computed } from "vue";
 export const useComputedData = (props: ITransferProps) => {
   // propsKey, sourceData, targetData

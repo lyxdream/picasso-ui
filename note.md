@@ -732,7 +732,32 @@ vue2 地址路径：https://template-explorer.vuejs.org/#
 vue3 地址路径：https://vue-next-template-explorer.netlify.app/#
 
 
+## 按需引入
 
+```
+npm install babel-plugin-component -D
+```
+
+babel插件就会自动将 import { Button } from '组件库' 转换为
+ import Button from '组件库/lib/components/Button'。
+
+我们只需要在 .babelrc 中做如下的设置。
+
+```
+// .babelrc
+{
+  "presets": [["es2015", { "modules": false }]],
+  "plugins": [
+    [
+      "component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }
+    ]
+  ]
+}
+```
 
 ```备注
 checkbox-group每次状态发生变化都得调用
