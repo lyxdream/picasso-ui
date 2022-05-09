@@ -1,0 +1,12 @@
+@import "./common/var.scss";
+@import "./mixins/mixins.scss";
+
+@include b(message) {
+   position: fixed;
+   top:20px;
+   left:50%;
+   transform: translateX(-50%);
+   min-width: 300px;
+   background-color: #f00;
+   border-radius: 5px;
+}

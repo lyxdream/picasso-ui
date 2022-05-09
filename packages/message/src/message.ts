@@ -14,16 +14,11 @@ const Message = (options: IMessageParams) => {
   //3、先把一个组件渲染成虚拟节点，然后再把一个节点render  createVnode(component)=>render(component,container)
   console.log(MessageComponent, "===MessageComponent");
   const container = document.createElement("div");
-  const vm = createVNode(MessageComponent)
+  const vm = createVNode(MessageComponent, options as any);
   //渲染组件
-  render(vm,container)
+  render(vm, container);
   //放到body下
-  document.body.appendChild(container.firstElementChild!)
-
+  document.body.appendChild(container.firstElementChild!);
 };
 
 export default Message;
-function createVnode(MessageComponent: any) {
-  throw new Error("Function not implemented.");
-}
-

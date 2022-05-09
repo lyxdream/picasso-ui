@@ -2,7 +2,7 @@
   "name": "@picasso-ui/message",
   "version": "0.0.0",
   "description": "> TODO: description",
-  "author": "yinxia <liyinxia@weimiao.cn>",
+  "author": "lyxdream",
   "homepage": "https://github.com/lyxdream/picasso-ui/tree/main/packages/message#readme",
   "license": "ISC",
   "main": "lib/message.js",
