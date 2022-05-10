@@ -1,12 +1,45 @@
 @import "./common/var.scss";
 @import "./mixins/mixins.scss";
 
+$--message-min-width: 300px !default;
+$--message-padding: 15px 15px 15px 20px !default;
 @include b(message) {
-   position: fixed;
-   top:20px;
-   left:50%;
-   transform: translateX(-50%);
-   min-width: 300px;
-   background-color: #f00;
-   border-radius: 5px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: $--message-min-width;
+  border-radius: $--border-radius-base;
+  border-width: $--border-width-base;
+  border-style: $--border-style-base;
+  border-color: $--border-color-lighter;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s, transform 0.4s, top 0.4s;
+  overflow: hidden;
+  padding: $--message-padding;
+  color: #fff;
+
+  @include m(info) {
+    background: $--color-info;
+  }
+  @include m(success) {
+    background: $--color-success;
+  }
+  @include m(warning) {
+    background: $--color-warning;
+  }
+  @include m(error) {
+    background: $--color-danger;
+  }
+  @include when(center) {
+    justify-content: center;
+  }
+}
+
+.p-message-fade-enter,
+.p-message-fade-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -100%);
 }

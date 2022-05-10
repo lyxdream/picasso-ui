@@ -1,4 +1,4 @@
-type IType = "success" | "warning" | "info" | "error";
+export type IType = "success" | "warning" | "info" | "error";
 export interface IMessageOptions {
   id?: string;
   message?: string;

@@ -7,6 +7,11 @@ $--color-warning: #e6a23c;
 $--color-danger: #f56c6c;
 $--color-info: #909399;
 
+$--border-radius-base: 4px !default;
+$--border-width-base: 1px !default;
+$--border-style-base: solid !default;
+$--border-color-lighter: #ebeef5 !default;
+
 /* Break-point
 --------------------------*/
 $--sm: 768px !default;
