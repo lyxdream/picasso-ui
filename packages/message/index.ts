@@ -6,5 +6,5 @@ import Message from "./src/message";
   app.config.globalProperties.$message = Message;
 };
 //用户可以去引入组件 通过use的方式，或者可以直接导入
-export { Message };
+// export { Message };
 export default Message;

@@ -1,6 +1,18 @@
 <template>
-  <transition name="p-message-fade">
-    <div class="p-message" v-show="visible" :class="classs">message</div>
+  <transition
+    name="p-message-fade"
+    @before-leave="onClose"
+    @after-leave="$emit('destroy')"
+  >
+    <div
+      class="p-message"
+      :id="id"
+      v-show="visible"
+      :class="classs"
+      :style="styles"
+    >
+      {{ message }}
+    </div>
   </transition>
 </template>
 <script lang="ts">
@@ -64,9 +76,15 @@ export default defineComponent({
       clearTimeout(timer);
       timer = null;
     });
+    const styles = computed(() => {
+      return {
+        top: `${props.offset}px`,
+      };
+    });
     return {
       classs,
       visible,
+      styles,
     };
   },
 });

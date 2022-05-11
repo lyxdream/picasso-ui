@@ -20,13 +20,19 @@ const components = [
   Transfer,
 ];
 
+const plugins = [Message];
+
 const install = (app: App): void => {
   components.forEach((component) => {
     app.component(component.name, component);
   });
   app.config.globalProperties.$message = Message;
-};
 
+  // plugins.forEach((plugin) => {
+  //   app.use(plugin as any);
+  // });
+};
+export { Message, install };
 // 在使用组件库的时候可以使用 createApp().use(XXX)
 export default {
   install,
