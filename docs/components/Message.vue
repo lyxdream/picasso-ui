@@ -3,11 +3,12 @@
 </template>
 <script>
 import { defineComponent } from "vue";
-import { Message } from "../../lib/message/index";
+// import { Message } from "../../lib/message/index";
+import { PMessage } from "picasso-ui";
 export default defineComponent({
   setup() {
     const showMessage = () => {
-      Message({
+      PMessage({
         message: "1111",
         center: true,
         type: "success",

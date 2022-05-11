@@ -26,6 +26,7 @@ import {
 } from "vue";
 import { IType } from "./message.types";
 export default defineComponent({
+  name: "PMessage",
   props: {
     id: {
       type: String,

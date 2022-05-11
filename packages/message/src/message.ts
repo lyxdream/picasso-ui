@@ -27,7 +27,7 @@ const Message = (options: IMessageParams) => {
     id,
     onClose: () => {
       //当移除的时候 需要把位置进行一个调整，把当前的位置向上移，移除实例   //根据id移除掉  // userOnClose?.(); // 等价于 userOnClose&&userOnClose()
-      console.log("根据id移除掉");
+      console.log("根据id移除掉11");
       close(id, userOnClose);
     },
   };
