@@ -71,6 +71,8 @@ export function close(id: string, userOnClose?: (vm: VNode) => void): void {
     const pos =
       Number.parseInt(instances[i].el!.style["top"], 10) - removedHeight - 16;
     instances[i].component!.props.offset = pos;
+    console.log(instances[i].component, "===instances[i].vm.component");
+    console.log(instances[i].component.proxy, "]]]]");
   }
 }
 
