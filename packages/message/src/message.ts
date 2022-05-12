@@ -1,5 +1,5 @@
 import { ComponentPublicInstance, createVNode, render, VNode } from "vue";
-import { IMessageParams } from "./message.types";
+import { IMessageParams, messageTypes } from "./message.types";
 import MessageComponent from "./message.vue";
 const instances: VNode[] = [];
 let seed = 1;
@@ -71,9 +71,29 @@ export function close(id: string, userOnClose?: (vm: VNode) => void): void {
     const pos =
       Number.parseInt(instances[i].el!.style["top"], 10) - removedHeight - 16;
     instances[i].component!.props.offset = pos;
-    console.log(instances[i].component, "===instances[i].vm.component");
-    console.log(instances[i].component.proxy, "]]]]");
   }
 }
 
+export function closeAll(): void {
+  const len = instances.length;
+  for (let i = len - 1; i >= 0; i--) {
+    const instance = instances[i].component;
+    (instance?.proxy as any)?.close();
+  }
+}
+
+messageTypes.forEach((type) => {
+  Message[type] = (options) => {
+    if (typeof options === "string") {
+      options = {
+        message: options,
+      };
+    }
+    return Message({
+      ...options,
+      type,
+    });
+  };
+});
+Message.closeAll = closeAll;
 export default Message;

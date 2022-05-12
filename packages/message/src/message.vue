@@ -11,7 +11,14 @@
       :class="classs"
       :style="styles"
     >
-      {{ message }}
+      <slot>
+        <div>
+          {{ message }}
+        </div>
+      </slot>
+      <div class="p-message__closeBtn" v-if="showClose" @click.stop="close">
+        <i class="p-icon-close"></i>
+      </div>
     </div>
   </transition>
 </template>
@@ -56,6 +63,10 @@ export default defineComponent({
       type: Number,
       default: 20,
     },
+    showClose: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const classs = computed(() => [
@@ -63,19 +74,28 @@ export default defineComponent({
       props.center ? "is-center" : "",
     ]);
     const visible = ref(false);
-    let timer = null;
+    const timer = ref(null);
     const startTimer = () => {
-      timer = setTimeout(() => {
-        visible.value = false;
-      }, props.duration);
+      if (props.duration > 0) {
+        timer.value = setTimeout(() => {
+          if (visible.value) close();
+        }, props.duration);
+      }
+    };
+    const clearTimer = () => {
+      clearTimeout(timer.value);
+      timer.value = null;
+    };
+    const close = () => {
+      visible.value = false;
     };
     onMounted(() => {
       startTimer();
       visible.value = true;
     });
     onUnmounted(() => {
-      clearTimeout(timer);
-      timer = null;
+      clearTimer();
+      close();
     });
     const styles = computed(() => {
       return {
@@ -86,6 +106,7 @@ export default defineComponent({
       classs,
       visible,
       styles,
+      close,
     };
   },
 });

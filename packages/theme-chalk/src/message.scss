@@ -3,6 +3,9 @@
 
 $--message-min-width: 300px !default;
 $--message-padding: 15px 15px 15px 20px !default;
+$--message-close-size: 16px !default;
+$--message-close-icon-color: $--color-text-placeholder !default;
+$--message-close-hover-color: $--color-text-secondary !default;
 @include b(message) {
   box-sizing: border-box;
   position: fixed;
@@ -20,6 +23,23 @@ $--message-padding: 15px 15px 15px 20px !default;
   overflow: hidden;
   padding: $--message-padding;
   color: #fff;
+
+  @include e(closeBtn) {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: $--message-close-icon-color;
+    font-size: $--message-close-size;
+
+    &:focus {
+      outline-width: 0;
+    }
+    &:hover {
+      color: $--message-close-hover-color;
+    }
+  }
 
   @include m(info) {
     background: $--color-info;

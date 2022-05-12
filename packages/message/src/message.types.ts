@@ -10,3 +10,5 @@ export interface IMessageOptions {
 }
 
 export type IMessageParams = IMessageOptions | string;
+
+export const messageTypes = ["success", "info", "warning", "error"] as const;
