@@ -16,8 +16,8 @@
           {{ message }}
         </div>
       </slot>
-      <div class="p-message__closeBtn" v-if="showClose" @click.stop="close">
-        <i class="p-icon-close"></i>
+      <div class="" v-if="showClose" @click.stop="close">
+        <i class="p-message__closeBtn p-icon-close"></i>
       </div>
     </div>
   </transition>

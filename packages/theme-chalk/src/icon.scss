@@ -5,7 +5,8 @@
     url("./fonts/iconfont.ttf") format("truetype");
 }
 
-[class^="#{$namespace}-icon-"] {
+[class^="#{$namespace}-icon-"],
+[class*="#{$namespace}-icon-"] {
   font-family: "p-ui-icons" !important;
   font-size: 16px;
   font-style: normal;
